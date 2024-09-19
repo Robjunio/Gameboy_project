@@ -1,16 +1,29 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public delegate void Die(Enemy enemy);
+    public static event Die die;
     [SerializeField] float speed;
+    [SerializeField] int damage;
     private Rigidbody2D rb;
     private Transform target;
+    private CircleCollider2D circleCollider;
 
     Vector2 dir;
+
+    bool alive = true;
+
+    private void OnDie()
+    {
+        die?.Invoke(this);
+    }
 
     private void Start()
     {
         transform.TryGetComponent(out rb);
+        transform.TryGetComponent(out circleCollider);
     }
 
     public void SetTarget(Transform transform)
@@ -20,11 +33,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (!alive) return;
         GetDir();
     }
 
     private void FixedUpdate()
     {
+        if (!alive) return;
         Move();
     }
 
@@ -44,7 +59,19 @@ public class Enemy : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            // Hit player
+            collision.gameObject.GetComponent<HealthSystem>().GetHit(damage);
         }
+    }
+
+    public void Dead()
+    {
+        OnDie();
+
+        circleCollider.enabled = false;
+        alive = false;
+        rb.velocity = Vector2.zero;
+        dir = transform.position - target.position;
+        rb.AddForce(dir * 10, ForceMode2D.Impulse);
+        Destroy(gameObject, 2f);
     }
 }

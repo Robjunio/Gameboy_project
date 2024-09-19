@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3262808169207175755}
   - component: {fileID: 7158349606925737203}
   - component: {fileID: 7574037752590575646}
-  m_Layer: 0
+  - component: {fileID: -1146736220347072864}
+  m_Layer: 6
   m_Name: Slime - Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -96,14 +97,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4270571775960226136}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &3262808169207175755
 Animator:
   serializedVersion: 5
@@ -183,4 +184,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1dec1fd5744ce47b0de967174b577d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
+  speed: 20
+  damage: 10
+--- !u!114 &-1146736220347072864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4270571775960226136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44313bb60bfdde247bb4bd896f0adb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  animator: {fileID: 3262808169207175755}

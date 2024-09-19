@@ -9,15 +9,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enviroment
   - Water
   - UI
+  - Enemy
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - Camera
   - 
   - 
   - 

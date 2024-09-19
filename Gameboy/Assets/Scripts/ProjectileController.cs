@@ -3,12 +3,18 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     [SerializeField] private GameObject impactPrefab;
+    [SerializeField] private int damage;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(impactPrefab != null)
+        if (collision.collider.CompareTag("Enemy"))
         {
-            Instantiate(impactPrefab, collision.transform.position, Quaternion.identity);
+            collision.gameObject.GetComponent<HealthSystem>().GetHit(damage);
+
+            if (impactPrefab != null)
+            {
+                Instantiate(impactPrefab, collision.transform.position, Quaternion.identity);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

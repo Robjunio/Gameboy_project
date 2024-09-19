@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    bool alive = true;
+
     Vector2 dir;
 
     private void Start()
@@ -16,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!alive) return;
         GetInput();
     }
 
     private void FixedUpdate()
     {
+        if (!alive) return;
         Move();
         Animate();
     }
@@ -55,5 +59,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetFloat("Magnitude", dir.magnitude);
+    }
+
+    public void Dead()
+    {
+        alive = false;
     }
 }

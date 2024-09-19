@@ -67,4 +67,13 @@ public class GunManager : MonoBehaviour
         }
     }
 
+    private void RemoveDeadEnemy(Enemy enemy)
+    {
+        enemies.Remove(enemy.transform);
+    }
+
+    private void OnEnable()
+    {
+        Enemy.die += RemoveDeadEnemy;
+    }
 }
