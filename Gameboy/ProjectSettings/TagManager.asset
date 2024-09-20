@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2476044521
+    locked: 0
+  - name: ImpactVfX
+    uniqueID: 3880197281
     locked: 0

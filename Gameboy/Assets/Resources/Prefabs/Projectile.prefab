@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8271122410261825332}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,5 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6e755c4bae75d408ac9b45e6804b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactPrefab: {fileID: 0}
+  heavyImpactPrefab: {fileID: 8966037912461787253, guid: 65795fabcbda77b4e8841adec69eea67, type: 3}
+  impactPrefab: {fileID: 1529645467920436059, guid: 2feef93c30a906e409b065439f2e65c5, type: 3}
+  arrow: {fileID: -4175603043846340589, guid: 2feef93c30a906e409b065439f2e65c5, type: 3}
+  arrowKill: {fileID: -2492272622890658392, guid: 65795fabcbda77b4e8841adec69eea67, type: 3}
   damage: 10

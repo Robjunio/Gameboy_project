@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource bow;
     [SerializeField] private GameObject Projectile;
     [SerializeField] private float projectileSpeed;
     List<Transform> enemies = new List<Transform>();
@@ -46,6 +47,7 @@ public class GunManager : MonoBehaviour
 
         var obj = Instantiate(Projectile, transform.GetChild(0).position, Quaternion.identity);
         var rb = obj.GetComponent<Rigidbody2D>();
+        bow.Play();
 
         rb.velocity = dir * projectileSpeed;
         rb.transform.right = dir;
