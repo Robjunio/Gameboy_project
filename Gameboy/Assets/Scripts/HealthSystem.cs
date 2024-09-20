@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float maxHealth;
-    private float currentHealth;
+    public int maxHealth;
+    public int currentHealth;
 
     private Enemy enemy;
     private PlayerMovement player;
@@ -20,7 +20,6 @@ public class HealthSystem : MonoBehaviour
 
     public void GetHit(int value)
     {
-        print("Got hit");
         if (currentHealth == 0) return;
 
         currentHealth -= value;
@@ -29,23 +28,43 @@ public class HealthSystem : MonoBehaviour
 
         if(player != null)
         {
+            Combo.Instance.ResetCombo();
             Camera.main.DOShakePosition(0.5f, 0.5f, 8);
         }
 
         if (currentHealth == 0) {
+            if (enemy != null)
+            {
+                //Feedback de dano fatal
+                // vfx.transform.Rotate(Random.Range(0f,360f), 0, 0);
+            }
             Die();
+        }
+        else
+        {
+            if (enemy != null)
+            {
+                //Feedback de dano
+            }
         }
     }
 
     private void Die()
     {
-        animator.SetBool("Dead", true);
         if(player != null)
         {
+            GameManager.Instance.LoseGame();
+            animator.SetBool("Dead", true);
             player.Dead();
         } else if(enemy != null)
         {
             enemy.Dead();
         }
+    }
+
+    public void Heal(int value) 
+    {
+        currentHealth += value;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 }

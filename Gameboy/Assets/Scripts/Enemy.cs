@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] GameObject[] drops;
+ 
     public delegate void Die(Enemy enemy);
     public static event Die die;
     [SerializeField] float speed;
@@ -51,6 +53,13 @@ public class Enemy : MonoBehaviour
     private void Move()
     {
         if (rb == null) return;
+        if(dir.x > 0)
+        {
+            transform.localScale = Vector3.one;
+        } else if(dir.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         rb.velocity = dir * Time.fixedDeltaTime * speed;
     }
@@ -66,6 +75,16 @@ public class Enemy : MonoBehaviour
     public void Dead()
     {
         OnDie();
+
+        var prob = Random.Range(0, 100);
+        if(prob > 90)
+        {
+            Instantiate(drops[0], transform.position, Quaternion.identity);
+        }
+        else if(prob > 70)
+        {
+            Instantiate(drops[1], transform.position, Quaternion.identity);
+        }
 
         circleCollider.enabled = false;
         alive = false;

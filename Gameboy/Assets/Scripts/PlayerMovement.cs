@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     [SerializeField] ParticleSystem grassStep;  //Grass particle system, needs to play when the player is walking.
 
-
     bool alive = true;
 
     Vector2 dir;

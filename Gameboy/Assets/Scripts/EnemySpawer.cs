@@ -17,6 +17,8 @@ public class EnemySpawer : MonoBehaviour
     float counterWave = 0;
     float counter = 0;
 
+    bool bossSpawn = false;
+
     private void Start()
     {
         SpawnEnemies();
@@ -32,15 +34,26 @@ public class EnemySpawer : MonoBehaviour
             SpawnEnemies();
             counterWave = 0;
         }
-        if(counter >= timeToBoss)
+        if(counter >= timeToBoss && !bossSpawn)
         {
-            // SpawnBoss (Destroi esse codigo após isso)
+            Vector2 spawnPos = GetRandomSpawnPosition();
+            if (spawnPos == Vector2.zero)
+            {
+                return;
+            }
+            GameObject spawnedEnemy = Instantiate(bossPrefab, spawnPos, Quaternion.identity);
+
+            var enemyBehaviour = spawnedEnemy.GetComponent<Enemy>();
+
+            enemyBehaviour.SetTarget(target);
+
+            bossSpawn = true;
         }
     }
 
     private void SpawnEnemies()
     {
-        var enemyQnt = Random.Range(2 * Wave, Wave * 4);
+        var enemyQnt = 2 * Wave;
 
         for(int i = 0; i < enemyQnt; i++) {
             Vector2 spawnPos = GetRandomSpawnPosition();
@@ -110,5 +123,14 @@ public class EnemySpawer : MonoBehaviour
         float randomY = Random.Range(minBounds.y, maxBounds.y);
 
         return new Vector2(randomX, randomY);
+    }
+
+    private void CountEnemy(Enemy e)
+    {
+        enemies--;
+        if(enemies <= 0 && bossSpawn)
+        {
+            GameManager.Instance.WinGame();
+        }
     }
 }
