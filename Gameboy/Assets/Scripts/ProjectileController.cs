@@ -19,14 +19,14 @@ public class ProjectileController : MonoBehaviour
             enemyHealth = collision.gameObject.GetComponent<HealthSystem>().currentHealth; // checks current enemy health.
             collision.gameObject.GetComponent<HealthSystem>().GetHit(damage);
 
-            if ((impactPrefab != null) && enemyHealth == 20) // comparison to check if the shot will kill.
+            if ((impactPrefab != null) && enemyHealth >= 20) // comparison to check if the shot will kill.
             {
                 Instantiate(impactPrefab, collision.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f))); // has this quaternion for random z axis rotations.
                 arrow.Play();
 
 
             }
-            else if ((impactPrefab != null) && enemyHealth == 10)
+            else if ((impactPrefab != null) && enemyHealth <= 10)
             {
                 Instantiate(heavyImpactPrefab, collision.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
                 arrowKill.Play();

@@ -11409,6 +11409,14 @@ PrefabInstance:
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 7079904956342409503, guid: f4cfd9efc88377c4eb8dc76ae40bb596, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079904956342409503, guid: f4cfd9efc88377c4eb8dc76ae40bb596, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8075
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079904956342409503, guid: f4cfd9efc88377c4eb8dc76ae40bb596, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
