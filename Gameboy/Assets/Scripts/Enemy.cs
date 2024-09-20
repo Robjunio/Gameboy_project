@@ -76,6 +76,14 @@ public class Enemy : MonoBehaviour
     {
         OnDie();
 
+        if(drops.Length == 0)
+        {
+            GameManager.Instance.WinGame();
+            Destroy(gameObject);
+
+            return;
+        }
+
         var prob = Random.Range(0, 100);
         if(prob > 90)
         {
